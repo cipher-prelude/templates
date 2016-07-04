@@ -1,0 +1,267 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+
+	<groupId>com.cipher-prelude</groupId>
+	<artifactId>template-vertx-without-db</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>template-vertx-without-db</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- START: Maven Plugin versions -->
+		<maven.compiler.plugin.version>3.0</maven.compiler.plugin.version>
+		<maven.resources.plugin.version>2.6</maven.resources.plugin.version>
+		<maven.clean.plugin.version>2.5</maven.clean.plugin.version>
+		<maven.vertx.plugin.version>2.0.11-final</maven.vertx.plugin.version>
+		<maven.surefire.plugin.version>2.14</maven.surefire.plugin.version>
+		<maven.failsafe.plugin.version>2.14</maven.failsafe.plugin.version>
+		<maven.surefire.report.plugin.version>2.14</maven.surefire.report.plugin.version>
+		<maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
+		<maven.dependency.plugin.version>2.7</maven.dependency.plugin.version>
+		<!-- END: Maven Plugin versions -->
+
+		<!-- START: Dependency versions -->
+		<jdk.version>1.8</jdk.version>
+		<vertx.version>3.2.1</vertx.version>
+		<vertx.testtools.version>2.0.3-final</vertx.testtools.version>
+		<vertx.stack.version>3.0.0-milestone5</vertx.stack.version>
+		<apache.commons.collections.version>3.2.1</apache.commons.collections.version>
+		<apache.commons.io.version>2.4</apache.commons.io.version>
+		<apache.commons.lang.version>2.6</apache.commons.lang.version>
+		<google.guava.version>14.0.1</google.guava.version>
+		<jackson.version>1.9.10</jackson.version>
+		<junit.version>4.11</junit.version>
+		<logback.version>1.1.3</logback.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<cfg4j.core.version>4.4.0</cfg4j.core.version>
+		<!-- END: Dependency versions -->
+
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+
+
+	<!-- START: Dependencies -->
+	<dependencies>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.7</version>
+		</dependency>
+
+		<!-- START: Vert.x Dependencies -->
+		
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-core</artifactId>
+			<version>${vertx.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-web</artifactId>
+			<version>${vertx.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-auth-service</artifactId>
+			<version>3.0.0-milestone5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-dropwizard-metrics</artifactId>
+			<version>${vertx.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-platform</artifactId>
+			<version>2.0.2-final</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>mod-rxjava</artifactId>
+			<version>1.0.0-beta2-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- END: Vert.x Dependencies -->
+
+
+		<!-- START: Apache Commons dependencies -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${apache.commons.lang.version}</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>${apache.commons.collections.version}</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${apache.commons.io.version}</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
+
+		<!-- END: Apache Commons dependencies -->
+
+		<!-- START: Jackson Dependency -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${jackson.version}</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+			<optional>false</optional>
+		</dependency>
+		<!-- END: Jackson Dependency -->
+
+		<!-- START: Logback and SLF4J Dependency -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<optional>false</optional>
+		</dependency>
+		<!-- END: Logback and SLF4J Dependency -->
+
+		<!-- START: Cfg4j Dependency -->
+		<dependency>
+			<groupId>org.cfg4j</groupId>
+			<artifactId>cfg4j-core</artifactId>
+			<version>${cfg4j.core.version}</version>
+		</dependency>
+		<!-- END: Cfg4j Dependency -->
+
+		<!-- START: Junit Dependency -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+		<!-- END: Junit Dependency -->
+
+
+		<dependency>
+			<groupId>com.mediaiq</groupId>
+			<artifactId>mediaiq-util</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.4</version>
+		</dependency>
+
+	</dependencies>
+	<!-- END: Dependencies -->
+
+	<build>
+		<plugins>
+
+			<!-- The vert.x Maven plugin -->
+			<plugin>
+				<groupId>io.vertx</groupId>
+				<artifactId>vertx-maven-plugin</artifactId>
+				<version>${maven.vertx.plugin.version}</version>
+
+				<!-- Make sure that the plugin uses the vert.x versions from this pom.xml 
+					not from its own pom.xml -->
+				<dependencies>
+					<dependency>
+						<groupId>io.vertx</groupId>
+						<artifactId>vertx-platform</artifactId>
+						<version>${vertx.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>io.vertx</groupId>
+						<artifactId>vertx-core</artifactId>
+						<version>${vertx.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>io.vertx</groupId>
+						<artifactId>vertx-hazelcast</artifactId>
+						<version>${vertx.version}</version>
+					</dependency>
+					<dependency>
+					    <groupId>postgresql</groupId>
+					    <artifactId>postgresql</artifactId>
+					    <version>8.4-702.jdbc4</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<!-- Other plugins required by the build -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/distribution.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+</project>

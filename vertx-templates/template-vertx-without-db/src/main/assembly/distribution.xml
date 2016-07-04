@@ -1,0 +1,40 @@
+<assembly>
+    <id></id>
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+            <scope>runtime</scope>
+            <excludes>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <fileSet>
+            <directory>src/main/config/${build.profile.id}/</directory>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>0744</fileMode>
+            <includes>
+                <include>*</include>
+                <include>images/**</include>
+                <include>email_templates/**</include>
+            </includes>
+            
+        </fileSet>
+        <fileSet>
+        	<directory>src/main/resources/</directory>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>0744</fileMode>
+            <includes>
+                <include>*</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    
+</assembly>

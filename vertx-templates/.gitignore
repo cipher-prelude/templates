@@ -1,0 +1,7 @@
+template-vertx-without-db/.classpath
+template-vertx-without-db/.project
+template-vertx-without-db/.settings/
+template-vertx-without-db/target/
+template-vertx-without-db/logs/
+template-vertx-without-db/.vertx/
+

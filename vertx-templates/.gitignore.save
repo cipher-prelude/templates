@@ -1,0 +1,11 @@
+
+
+/.classpath
+atd-server/.project
+atd-server/.settings/
+target/
+logs/
+model-bonspy/bonspy/
+model-bonspy/bonsai_out
+model-bonspy/bonsai_*
+*.pyc
